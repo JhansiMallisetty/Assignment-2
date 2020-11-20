@@ -1,0 +1,21 @@
+package main
+
+import "fmt"
+func main() {
+
+var stack []string
+
+stack = append(stack, "One") 
+stack = append(stack, "Kloud ")
+
+for len(stack) > 0 {
+    n := len(stack) - 1 
+    fmt.Print(stack[n])
+
+    stack = stack[:n] 
+}
+}
+
+
+Kloud One
+Program exited.

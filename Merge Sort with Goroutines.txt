@@ -1,0 +1,74 @@
+package main
+
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
+
+func main() {
+
+	slice := generateSlice(50)
+	fmt.Println("\n --- unsorted --- \n\n", slice)
+	fmt.Println("\n--- sorted ---\n\n", MergeSort(slice))
+}
+
+
+func generateSlice(size int) []int {
+
+	slice := make([]int, size, size)
+	rand.Seed(time.Now().UnixNano())
+	for i := 0; i < size; i++ {
+		slice[i] = rand.Intn(100) - rand.Intn(100)
+	}
+	return slice
+}
+
+
+func MergeSort(slice []int) []int {
+
+	if len(slice) < 2 {
+		return slice
+	}
+	mid := (len(slice)) / 2
+	return Merge(MergeSort(slice[:mid]), MergeSort(slice[mid:]))
+}
+
+
+func Merge(left, right []int) []int {
+
+	size, i, j := len(left)+len(right), 0, 0
+	slice := make([]int, size, size)
+	count := 0
+	
+	for i < len(left) && j < len(right) {
+		if left[i] <= right[j] {
+			slice[count] = left[i]
+			count, i = count+1, i+1
+		} else {
+			slice[count] = right[j]
+			count, j = count+1, j+1
+		}
+	}
+	for i < len(left) {
+		slice[count] = left[i]
+		count, i = count+1, i+1
+	}
+	for j < len(right) {
+		slice[count] = right[j]
+		count, j = count+1, j+1
+	}
+	
+	return slice
+}
+
+
+ --- unsorted --- 
+
+ [-28 -35 -26 -3 4 27 14 -30 26 50 -32 2 68 15 -7 10 -1 60 7 -62 10 10 -42 -20 87 5 -52 -24 36 32 67 -29 14 25 33 8 9 -78 -2 -14 -1 -38 -77 -56 17 10 13 46 41 -41]
+
+--- sorted ---
+
+ [-78 -77 -62 -56 -52 -42 -41 -38 -35 -32 -30 -29 -28 -26 -24 -20 -14 -7 -3 -2 -1 -1 2 4 5 7 8 9 10 10 10 10 13 14 14 15 17 25 26 27 32 33 36 41 46 50 60 67 68 87]
+
+Program exited.

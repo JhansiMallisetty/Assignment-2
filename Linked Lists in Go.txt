@@ -1,0 +1,28 @@
+package main
+
+import (
+    "fmt"
+    "container/list"
+)
+
+func main() {
+    fmt.Println("Welcome Kloud One")
+	
+    mylist := list.New()
+    mylist.PushBack(1)
+    mylist.PushFront(2)
+
+    for element := mylist.Front(); element != nil; element = element.Next() {
+	
+	fmt.Println(element.Value)
+    }
+
+}
+
+
+
+Welcome Kloud One
+2
+1
+
+Program exited.
