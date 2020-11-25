@@ -1,0 +1,26 @@
+package main 
+import "fmt"
+func main() { 
+    Map := map[int]string{ 
+  
+        0: "Jhansi", 
+        1: "Suji", 
+        2: "Navya", 
+        3: "Madhavi", 
+        4: "cherry", 
+    } 
+  
+    
+    for id, students := range Map { 
+  
+        fmt.Println(id, students) 
+    } 
+} 
+
+
+0 Jhansi
+1 Suji
+2 Navya
+3 Madhavi
+4 cherry
+
